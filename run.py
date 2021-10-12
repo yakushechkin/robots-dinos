@@ -6,10 +6,10 @@ from flask_restful import Api
 from config import Config
 
 # import resources
+from app.game import Game_resource
 from app.robots import Robot_resource
 from app.dinos import Dino_resource
 
-# from resources.item import Item, ItemList
 
 app = Flask(__name__)
 api = Api(app)
@@ -22,10 +22,10 @@ def create_tables():
     db.create_all()
 
 
-api.add_resource(Robot_resource, "/robot/<int:robot_id>")
-api.add_resource(Dino_resource, "/dino/<int:dino_id>")
-# api.add_resource(Item, '/item/<string:name>')
-# api.add_resource(ItemList, '/items')
+api.add_resource(Robot_resource, "/robot/")
+api.add_resource(Dino_resource, "/dino/")
+api.add_resource(Game_resource, "/game/")
+
 
 if __name__ == "__main__":
     from app.models import db
