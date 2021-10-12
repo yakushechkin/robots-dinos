@@ -24,3 +24,13 @@ class Robot(db.Model):
         
     def __repr(self):
         return f"Robot(id = {id}, x = {x}, y = {y}, direction = {direction})"
+
+class Dino(db.Model):
+    
+    id = db.Column(db.Integer, primary_key=True)
+    x = db.Column(db.Integer, nullable=False)
+    y = db.Column(db.Integer, nullable=False)
+    # created = db.Column(db.DateTime, default=datetime.now())
+       
+    def __repr(self):
+        return f"Dino(id = {id}, x = {x}, y = {y})"
