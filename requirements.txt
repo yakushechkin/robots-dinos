@@ -1,0 +1,10 @@
+pylint
+pytest
+click
+black
+pytest-cov
+requests
+numpy
+flask
+flask_restful
+flask_sqlalchemy
