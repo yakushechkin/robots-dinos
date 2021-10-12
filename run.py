@@ -7,6 +7,7 @@ from config import Config
 
 # import resources
 from app.robots import Robot_resource
+from app.dinos import Dino_resource
 
 # from resources.item import Item, ItemList
 
@@ -22,7 +23,7 @@ def create_tables():
 
 
 api.add_resource(Robot_resource, "/robot/<int:robot_id>")
-# api.add_resource(UserList, '/users')
+api.add_resource(Dino_resource, "/dino/<int:dino_id>")
 # api.add_resource(Item, '/item/<string:name>')
 # api.add_resource(ItemList, '/items')
 
