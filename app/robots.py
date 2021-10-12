@@ -1,39 +1,63 @@
 from flask_restful import Resource, reqparse, abort, fields, marshal_with
-from app.models import Robot, db
+from app.models import db, Robot
+from app.utils import check_grid, check_coords, check_position
+
+helper = "[x: Integer, y: Integer, direction: String [east,west,south or north]"
 
 robot_put_args = reqparse.RequestParser()
-robot_put_args.add_argument("x", type=int, help="X coord is required", required=True)
-robot_put_args.add_argument("y", type=int, help="Y coord is required", required=True)
-robot_put_args.add_argument("direction", type=str, help="Facing direction is required", required=True)
+robot_put_args.add_argument(
+    "x",
+    type=int,
+    help="x coord is required. [x: Integer, y: Integer, direction: String [east,west,south or north]",
+    required=True,
+)
+robot_put_args.add_argument(
+    "y",
+    type=int,
+    help="y coord is required. [x: Integer, y: Integer, direction: String [east,west,south or north]",
+    required=True,
+)
+robot_put_args.add_argument(
+    "direction",
+    type=str,
+    help="Facing direction is required. [x: Integer, y: Integer, direction: String [east,west,south or north]".format(
+        helper
+    ),
+    required=True,
+)
+
+robot_get_args = reqparse.RequestParser()
+robot_get_args.add_argument("id", type=int, help="ID is required", required=True)
 
 
 robot_fields = {
-	'id': fields.Integer,
-	'x': fields.Integer,
-	'y': fields.Integer,
-	'direction': fields.String
+    "id": fields.Integer,
+    "x": fields.Integer,
+    "y": fields.Integer,
+    "direction": fields.String,
 }
 
-class Robot_resource(Resource):
 
+class Robot_resource(Resource):
     @marshal_with(robot_fields)
-    def get(self, robot_id):
-        result = Robot.query.filter_by(id=robot_id).first()
+    def get(self):
+        args = robot_get_args.parse_args()
+        result = Robot.query.filter_by(id=args["id"]).first()
         if not result:
             abort(404, message="Could not find robot with that id")
         return result
 
     @marshal_with(robot_fields)
-    def put(self, robot_id):
+    def post(self):
         args = robot_put_args.parse_args()
-        result = Robot.query.filter_by(id=robot_id).first()
-        if result:
-            abort(409, message="Robot id taken...")
-        
-        robot = Robot(id=robot_id, x = args['x'], y=args['y'], direction=args['direction'])
+
+        check_grid()
+        check_position(args["x"], args["y"])
+        check_coords(args["x"], args["y"])
+
+        robot = Robot(x=args["x"], y=args["y"], direction=args["direction"])
 
         db.session.add(robot)
         db.session.commit()
-            
+
         return robot, 201
-      
