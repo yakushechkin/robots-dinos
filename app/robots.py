@@ -1,4 +1,4 @@
-from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
+from flask_restful import Resource, reqparse, abort, fields, marshal_with
 from app.models import Robot, db
 
 robot_put_args = reqparse.RequestParser()
