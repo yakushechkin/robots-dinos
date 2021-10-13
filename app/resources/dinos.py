@@ -24,7 +24,7 @@ dino_fields = {"id": fields.Integer, "x": fields.Integer, "y": fields.Integer}
 class DinoGetResource(Resource):
 
     """
-    Define HTTP methods (GET, POST) for the Dinosaurs.
+    Define HTTP methods (GET) for the Dinosaurs.
     """
 
     @marshal_with(dino_fields)
