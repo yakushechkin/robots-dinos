@@ -1,7 +1,6 @@
 from flask import Flask, json
 from flask_restful import Api
 import unittest
-import requests
 import os, sys, inspect
 
 # change the current dir (to avoid using __init__.py and relative imports)
@@ -81,7 +80,6 @@ class TestRobots(unittest.TestCase):
         response = self.app.test_client().get(f"/robot/{robot_id}")
         data = json.loads(response.data)
         self.assertEqual(data["message"], f"Could not find robot with id {robot_id}")
-        "Could not find robot with id 1"
 
         data = {"x": 10, "y": 5, "direction": "EAST"}
         self.app.test_client().post("/robot/", data=data)

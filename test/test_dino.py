@@ -1,7 +1,6 @@
 from flask import Flask, json
 from flask_restful import Api
 import unittest
-import requests
 import os, sys, inspect
 
 # change the current dir (to avoid using __init__.py and relative imports)
@@ -82,7 +81,6 @@ class TestDinos(unittest.TestCase):
         response = self.app.test_client().get(f"/dino/{dino_id}")
         data = json.loads(response.data)
         self.assertEqual(data["message"], f"Could not find dino with id {dino_id}")
-        "Could not find dino with id 1"
 
         data = {"x": 10, "y": 5}
         self.app.test_client().post("/dino/", data=data)

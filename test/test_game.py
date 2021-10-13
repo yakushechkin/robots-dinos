@@ -1,7 +1,6 @@
 from flask import Flask, json
 from flask_restful import Api
 import unittest
-import requests
 import os, sys, inspect
 
 # change the current dir (to avoid using __init__.py and relative imports)
