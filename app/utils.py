@@ -14,9 +14,9 @@ def range_limited_int_type(arg):
     try:
         dim = int(arg)
     except ValueError:
-        raise ValueError("Must be an Integer number")
+        raise ValueError("Must be an Integer number") from None
     if dim <= 0:
-        raise ValueError("Argument must be < " + str(0))
+        raise ValueError("Argument must be < " + str(0)) from None
     return dim
 
 
