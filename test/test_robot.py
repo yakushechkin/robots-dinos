@@ -105,7 +105,7 @@ class TestRobots(unittest.TestCase):
 
         response = self.app.test_client().post("/robot/", data=data)
         resp_data = json.loads(response.data)
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         self.assertEqual(
             resp_data["message"], "The grid doesn't exist. Please create a new space."
         )
