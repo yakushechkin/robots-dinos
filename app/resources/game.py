@@ -3,7 +3,7 @@ Game(grid) Resource
 """
 
 from flask_restful import Resource, reqparse, abort, fields, marshal_with
-from app.models.models import db, Game, Robot, Dino
+from app.models import db, Game, Robot, Dino
 from app.utils import check_grid, row2dict
 
 game_post_args = reqparse.RequestParser()

@@ -4,7 +4,7 @@ Helper funtions
 
 from itertools import cycle
 from flask_restful import abort
-from app.models.models import db, Dino, Robot, Game, Direction
+from app.models import db, Dino, Robot, Game, Direction
 
 
 def row2dict(row):

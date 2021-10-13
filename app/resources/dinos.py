@@ -3,7 +3,7 @@ Dinosaur Resource
 """
 
 from flask_restful import Resource, reqparse, abort, fields, marshal_with
-from app.models.models import db, Dino, Game
+from app.models import db, Dino, Game
 from app.utils import check_grid, check_coords, check_position
 
 dino_post_args = reqparse.RequestParser()

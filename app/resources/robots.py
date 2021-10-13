@@ -3,7 +3,7 @@ Robot Resource
 """
 
 from flask_restful import Resource, reqparse, abort, fields, marshal_with
-from app.models.models import db, Robot, Game
+from app.models import db, Robot, Game
 from app.utils import row2dict, check_grid, check_coords, check_position, robot_action
 
 robot_get_args = reqparse.RequestParser()

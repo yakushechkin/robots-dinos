@@ -9,7 +9,7 @@ from app.resources.robots import RobotResource
 from app.resources.dinos import DinoResource
 
 # uncomment if you want DB to be refreshed each run (1/2)
-# from app.models.models import Dino, Robot, Game
+# from app.models import Dino, Robot, Game
 
 
 app = Flask(__name__)
@@ -39,7 +39,7 @@ api.add_resource(GameResource, "/game/")
 
 
 if __name__ == "__main__":
-    from app.models.models import db
+    from app.models import db
 
     db.init_app(app)
     app.run(port=5000, debug=True)
