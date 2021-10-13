@@ -60,17 +60,17 @@ class TestGame(unittest.TestCase):
 
     def create_dinos(self):
 
-            self.create_game()
+        self.create_game()
 
-            data = [
-                {"x": 10, "y": 5},
-                {"x": 2, "y": 5},
-                {"x": 1, "y": 7},
-                {"x": 1, "y": 1},
-                {"x": 2, "y": 1},
-            ]
-            for i in range(len(data)):
-                self.app.test_client().post("/dino/", data=data[i])
+        data = [
+            {"x": 10, "y": 5},
+            {"x": 2, "y": 5},
+            {"x": 1, "y": 7},
+            {"x": 1, "y": 1},
+            {"x": 2, "y": 1},
+        ]
+        for i in range(len(data)):
+            self.app.test_client().post("/dino/", data=data[i])
 
     def create_robots(self):
 
@@ -85,7 +85,7 @@ class TestGame(unittest.TestCase):
         ]
 
         for i in range(len(data)):
-                self.app.test_client().post("/robot/", data=data[i])
+            self.app.test_client().post("/robot/", data=data[i])
 
     def test_get_empty_game(self):
         response = self.app.test_client().get("/game/")
@@ -150,8 +150,9 @@ class TestGame(unittest.TestCase):
         self.create_robots()
         response = self.app.test_client().get("game/")
         resp_data = json.loads(response.data)
-        self.assertEqual(resp_data['n_robots'], 5)
-        self.assertEqual(resp_data['n_dinos'], 5)
+        self.assertEqual(resp_data["n_robots"], 5)
+        self.assertEqual(resp_data["n_dinos"], 5)
+
 
 if __name__ == "__main__":
     unittest.main()

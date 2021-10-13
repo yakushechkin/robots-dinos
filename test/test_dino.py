@@ -58,7 +58,6 @@ class TestDinos(unittest.TestCase):
     def create_game(self):
         self.app.test_client().post("/game/")
 
-
     def create_robots(self):
 
         self.create_game()
@@ -72,7 +71,7 @@ class TestDinos(unittest.TestCase):
         ]
 
         for i in range(len(data)):
-                self.app.test_client().post("/robot/", data=data[i])
+            self.app.test_client().post("/robot/", data=data[i])
 
     def test_get_dino(self):
 
@@ -89,9 +88,7 @@ class TestDinos(unittest.TestCase):
         self.app.test_client().post("/dino/", data=data)
         response = self.app.test_client().get(f"/dino/{dino_id}")
         resp_data = json.loads(response.data)
-        self.assertEqual(
-            resp_data, {"id": 1, "x": 10, "y": 5}
-        )
+        self.assertEqual(resp_data, {"id": 1, "x": 10, "y": 5})
 
     def test_invalid_create_dino(self):
         response = self.app.test_client().post("/dino/")
@@ -99,8 +96,7 @@ class TestDinos(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(
             data["message"]["x"],
-            "x coord is required. "
-            + "[x: Integer, y: Integer]",
+            "x coord is required. " + "[x: Integer, y: Integer]",
         )
 
     def test_create_dino_empty_space(self):
@@ -132,9 +128,7 @@ class TestDinos(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
         response = self.app.test_client().post("dino/", data=data[2])
         resp_data = json.loads(response.data)
-        self.assertEqual(
-            resp_data, dict({"id": 3, "x": 7, "y": 2})
-        )
+        self.assertEqual(resp_data, dict({"id": 3, "x": 7, "y": 2}))
         response = self.app.test_client().post("dino/", data=data[3])
         self.assertEqual(response.status_code, 405)
         response = self.app.test_client().post("dino/", data=data[4])
@@ -151,11 +145,10 @@ class TestDinos(unittest.TestCase):
 
         response = self.app.test_client().post("/dino/", data=data[0])
         resp_data = json.loads(response.data)
-        self.assertEqual(
-            resp_data["message"], "Oops! Robot (id 1) is already here..."
-        )
+        self.assertEqual(resp_data["message"], "Oops! Robot (id 1) is already here...")
         response = self.app.test_client().post("/dino/", data=data[1])
         self.assertEqual(response.status_code, 201)
+
 
 if __name__ == "__main__":
     unittest.main()
