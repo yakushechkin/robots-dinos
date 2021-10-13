@@ -72,7 +72,7 @@ def check_grid():
 
     result = db.session.query(Game).first()
     if not result:
-        abort(404, message="The grid doesn't exist. Please create a new space.")
+        abort(400, message="The grid doesn't exist. Please create a new space.")
 
 
 def robot_action(robot, action):
