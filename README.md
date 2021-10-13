@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/yakushechkin/robots-dinos/actions/workflows/main.yml/badge.svg)](https://github.com/yakushechkin/robots-dino/actions/workflows/main.yml)
+[![Build Status](https://github.com/yakushechkin/robots-dinos/actions/workflows/main.yml/badge.svg)](https://github.com/yakushechkin/robots-dinos/actions/workflows/main.yml)
 
 
 # robots-dinos
