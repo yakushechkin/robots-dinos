@@ -1,3 +1,6 @@
+[![Build Status](https://github.com/yakushechkin/robots-dinos/actions/workflows/main.yml/badge.svg)](https://github.com/yakushechkin/robots-dino/actions/workflows/main.yml)
+
+
 # robots-dinos
 The 'robots-vs-dinos' challenge solution
 
