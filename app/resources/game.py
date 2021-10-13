@@ -4,11 +4,14 @@ Game(grid) Resource
 
 from flask_restful import Resource, reqparse, abort, fields, marshal_with
 from app.models import db, Game, Robot, Dino
-from app.utils import check_grid, row2dict
+from app.utils import check_grid, row2dict, range_limited_int_type
+
 
 game_post_args = reqparse.RequestParser()
 game_post_args.add_argument(
-    "dim", type=int, help="Set the dimension of the square simulation space"
+    "dim",
+    type=range_limited_int_type,
+    help="Set the dimension of the square simulation space. Value must be >= 1",
 )
 
 game_fields = {

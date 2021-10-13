@@ -21,14 +21,14 @@ dino_get_args.add_argument("id", type=int, help="ID is required", required=True)
 dino_fields = {"id": fields.Integer, "x": fields.Integer, "y": fields.Integer}
 
 
-class DinoResource(Resource):
+class DinoGetResource(Resource):
 
     """
     Define HTTP methods (GET, POST) for the Dinosaurs.
     """
 
     @marshal_with(dino_fields)
-    def get(self):
+    def get(self, dino_id):
 
         """
         Get method retrieves the data about the current position.
@@ -36,11 +36,17 @@ class DinoResource(Resource):
 
         check_grid()
 
-        args = dino_get_args.parse_args()
-        result = Dino.query.filter_by(id=args["id"]).first()
+        result = Dino.query.filter_by(id=dino_id).first()
         if not result:
-            abort(404, message=f"Could not find dino with id {args['id']}")
+            abort(404, message=f"Could not find dino with id {dino_id}")
         return result, 200
+
+
+class DinoResource(Resource):
+
+    """
+    Define HTTP methods (POST) for the Dinosaurs.
+    """
 
     @marshal_with(dino_fields)
     def post(self):

@@ -7,6 +7,19 @@ from flask_restful import abort
 from app.models import db, Dino, Robot, Game, Direction
 
 
+def range_limited_int_type(arg):
+    """
+    Type function for reqparse
+    """
+    try:
+        dim = int(arg)
+    except ValueError:
+        raise ValueError("Must be an Integer number")
+    if dim <= 0:
+        raise ValueError("Argument must be < " + str(0))
+    return dim
+
+
 def row2dict(row):
 
     """
@@ -29,7 +42,7 @@ def check_position(x, y):
     """
     robot_exist = Robot.query.filter_by(x=x, y=y).first()
     if robot_exist:
-        abort(409, message=f"Oops! Robot (id {robot_exist.id})is already here ..")
+        abort(409, message=f"Oops! Robot (id {robot_exist.id}) is already here...")
 
     dino_exist = Dino.query.filter_by(x=x, y=y).first()
     if dino_exist:
@@ -43,10 +56,9 @@ def check_coords(x, y):
     """
 
     grid_dim = db.session.query(Game).first()
-    print(x, y, x >= grid_dim.dim or y >= grid_dim.dim)
-    if x >= grid_dim.dim or y >= grid_dim.dim:
+    if x >= grid_dim.dim or y >= grid_dim.dim or x < 0 or y < 0:
         abort(
-            403,
+            405,
             message="The coordinates lie outside the grid..."
             + f"(the grid is {grid_dim.dim}x{grid_dim.dim})",
         )
@@ -122,7 +134,6 @@ def robot_action(robot, action):
         message["message"] = f"The robot {robot.id} turned left"
 
     elif action == "turn right":
-        print(robot.direction)
         for direction in directions_clockwise:
             if robot.direction == direction:
                 robot.direction = next(directions_clockwise)

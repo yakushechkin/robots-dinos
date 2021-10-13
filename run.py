@@ -5,8 +5,8 @@ from config import Config
 
 # import resources
 from app.resources.game import GameResource
-from app.resources.robots import RobotResource
-from app.resources.dinos import DinoResource
+from app.resources.robots import RobotResource, RobotGetResource
+from app.resources.dinos import DinoResource, DinoGetResource
 
 # uncomment if you want DB to be refreshed each run (1/2)
 # from app.models import Dino, Robot, Game
@@ -34,7 +34,9 @@ def create_tables():
 
 
 api.add_resource(RobotResource, "/robot/")
+api.add_resource(RobotGetResource, "/robot/<int:robot_id>")
 api.add_resource(DinoResource, "/dino/")
+api.add_resource(DinoGetResource, "/dino/<int:dino_id>")
 api.add_resource(GameResource, "/game/")
 
 
