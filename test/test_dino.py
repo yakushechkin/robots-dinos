@@ -151,7 +151,6 @@ class TestDinos(unittest.TestCase):
 
         response = self.app.test_client().post("/dino/", data=data[0])
         resp_data = json.loads(response.data)
-        print(resp_data)
         self.assertEqual(
             resp_data["message"], "Oops! Robot (id 1) is already here..."
         )
