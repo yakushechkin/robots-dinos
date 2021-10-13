@@ -67,7 +67,7 @@ class TestDinos(unittest.TestCase):
             {"x": 10, "y": 5, "direction": "EAST"},
             {"x": 2, "y": 18, "direction": "WEST"},
             {"x": 7, "y": 2, "direction": "EAST"},
-            {"x": 14, "y": 14, "direction": "EAST"},
+            {"x": 14, "y": 38, "direction": "EAST"},
             {"x": 2, "y": 19, "direction": "EAST"},
         ]
 
