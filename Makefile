@@ -9,4 +9,4 @@ lint:
 	pylint --load-plugins pylint_flask_sqlalchemy --disable=R,C app
 
 test:
-	python -m pytest -vv --cov=main test_main.py
+	python -m unittest discover -s /test/ -p 'test_*.py'
