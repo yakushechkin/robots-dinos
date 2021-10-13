@@ -65,14 +65,14 @@ robot_put_fields = {
 }
 
 
-class RobotResource(Resource):
+class RobotGetResource(Resource):
 
     """
-    Define HTTP methods (GET, POST, PUT) for the Robot.
+    Define HTTP methods (GET) for the Robot.
     """
 
     @marshal_with(robot_fields)
-    def get(self):
+    def get(self, robot_id):
 
         """
         Get method retrieves the data about the position, direction.
@@ -80,11 +80,17 @@ class RobotResource(Resource):
 
         check_grid()
 
-        args = robot_get_args.parse_args()
-        result = Robot.query.filter_by(id=args["id"]).first()
+        result = Robot.query.filter_by(id=robot_id).first()
         if not result:
-            abort(404, message=f"Could not find robot with id {args['id']}")
+            abort(404, message=f"Could not find robot with id {robot_id}")
         return result, 200
+
+
+class RobotResource(Resource):
+
+    """
+    Define HTTP methods (POST, PUT) for the Robot.
+    """
 
     @marshal_with(robot_fields)
     def post(self):
